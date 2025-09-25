@@ -1,0 +1,48 @@
+# Claims Registry Template
+# Use this YAML to catalog all material claims in content assets for validation
+
+claims:
+  - id: c1
+    text: "Significant speedups observed in genomic data processing when migrating from manual pipelines to GPU-accelerated workflows on OCI."
+    confidence: medium
+    source:
+      href: "https://docs.oracle.com/en-us/iaas/data-science/using/gpu.htm"
+      type: oracle-doc
+      date: "2023-12-01"
+      notes: "OCI Data Science GPU capabilities"
+    qualification: "Results vary by workload, data size, and optimization level."
+    risk_level: low
+
+  - id: c2
+    text: "Potential TCO reductions through elastic cloud consumption and right-sizing compared to on-premises HPC."
+    confidence: medium
+    source:
+      href: "internal-poc-genetics-2024"
+      type: internal-POC
+      date: "2024-09-15"
+      notes: "Approved POC results for external use"
+    qualification: "Actual costs depend on utilization patterns and reserved capacity."
+    risk_level: low
+
+  - id: c3
+    text: "Reference architectures on OCI leverage Generative AI Service and Data Science for genomic analysis solutions."
+    confidence: high
+    source:
+      href: "https://docs.oracle.com/en-us/iaas/GenerativeAI/index.html"
+      type: oracle-doc
+      date: "2024-06-01"
+      notes: "OCI Generative AI Service documentation"
+    qualification: "Customers/partners build solutions using these services."
+    risk_level: none
+
+# Template for adding new claims:
+# - id: c{n}
+#   text: ""
+#   confidence: high|medium|low
+#   source:
+#     href: ""
+#     type: oracle-doc|case-study|peer-reviewed|internal-POC|analyst-report
+#     date: "YYYY-MM-DD"
+#     notes: ""
+#   qualification: ""
+#   risk_level: none|low|medium|high

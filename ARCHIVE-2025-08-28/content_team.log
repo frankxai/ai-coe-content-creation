@@ -1,0 +1,94 @@
+2025-08-25 10:02:46,992 - ContentTeam - INFO - Activating Content Team in full mode
+2025-08-25 10:02:46,993 - ContentTeam - INFO - Initializing orchestrator
+2025-08-25 10:02:46,993 - ContentTeam - INFO - Initializing content_strategist
+2025-08-25 10:02:46,994 - ContentTeam - INFO - Initializing trend_researcher
+2025-08-25 10:02:46,994 - ContentTeam - INFO - Initializing content_ideation
+2025-08-25 10:02:46,995 - ContentTeam - INFO - Initializing linkedin_writer
+2025-08-25 10:02:46,995 - ContentTeam - INFO - Initializing media_curator
+2025-08-25 10:02:46,995 - ContentTeam - INFO - Initializing content_repurposing
+2025-08-25 10:02:46,995 - ContentTeam - INFO - Initializing performance_analyst
+2025-08-25 10:02:46,995 - ContentTeam - INFO - Starting data gathering phase
+2025-08-25 10:02:46,996 - ContentTeam - INFO - Starting content generation phase
+2025-08-25 10:02:46,997 - ContentTeam - INFO - Compiling daily report
+2025-08-25 10:02:46,997 - ContentTeam - INFO - Delivering results
+2025-08-25 10:02:46,999 - ContentTeam - INFO - Report saved to reports/daily_report_2025-08-25.json
+2025-08-25 10:02:47,000 - ContentTeam - INFO - Content Team activation completed successfully
+2025-08-25 10:07:17,177 - ContentTeam - INFO - Activating Content Team in full mode
+2025-08-25 10:07:17,178 - ContentTeam - INFO - Initializing orchestrator
+2025-08-25 10:07:17,178 - ContentTeam - INFO - Initializing content_strategist
+2025-08-25 10:07:17,178 - ContentTeam - INFO - Initializing trend_researcher
+2025-08-25 10:07:17,178 - ContentTeam - INFO - Initializing content_ideation
+2025-08-25 10:07:17,178 - ContentTeam - INFO - Initializing linkedin_writer
+2025-08-25 10:07:17,178 - ContentTeam - INFO - Initializing media_curator
+2025-08-25 10:07:17,179 - ContentTeam - INFO - Initializing content_repurposing
+2025-08-25 10:07:17,179 - ContentTeam - INFO - Initializing performance_analyst
+2025-08-25 10:07:17,179 - ContentTeam - INFO - Starting data gathering phase
+2025-08-25 10:07:17,179 - ContentTeam - INFO - Starting content generation phase
+2025-08-25 10:07:17,180 - ContentTeam - INFO - Compiling daily report
+2025-08-25 10:07:17,180 - ContentTeam - INFO - Delivering results
+2025-08-25 10:07:17,183 - ContentTeam - INFO - Report saved to daily-outputs/2025-08-25/viral_report.json
+2025-08-25 10:07:17,185 - ContentTeam - ERROR - Activation failed: 'charmap' codec can't encode character '\U0001f525' in position 51: character maps to <undefined>
+2025-08-25 10:08:20,596 - ContentTeam - INFO - Activating Content Team in full mode
+2025-08-25 10:08:20,596 - ContentTeam - INFO - Initializing orchestrator
+2025-08-25 10:08:20,596 - ContentTeam - INFO - Initializing content_strategist
+2025-08-25 10:08:20,597 - ContentTeam - INFO - Initializing trend_researcher
+2025-08-25 10:08:20,597 - ContentTeam - INFO - Initializing content_ideation
+2025-08-25 10:08:20,597 - ContentTeam - INFO - Initializing linkedin_writer
+2025-08-25 10:08:20,597 - ContentTeam - INFO - Initializing media_curator
+2025-08-25 10:08:20,597 - ContentTeam - INFO - Initializing content_repurposing
+2025-08-25 10:08:20,597 - ContentTeam - INFO - Initializing performance_analyst
+2025-08-25 10:08:20,597 - ContentTeam - INFO - Starting data gathering phase
+2025-08-25 10:08:20,598 - ContentTeam - INFO - Starting content generation phase
+2025-08-25 10:08:20,598 - ContentTeam - INFO - Compiling daily report
+2025-08-25 10:08:20,598 - ContentTeam - INFO - Delivering results
+2025-08-25 10:08:20,600 - ContentTeam - INFO - Report saved to daily-outputs/2025-08-25/viral_report.json
+2025-08-25 10:08:20,601 - ContentTeam - INFO - Markdown output saved to daily-outputs/2025-08-25/viral_content.md
+2025-08-25 10:08:20,601 - ContentTeam - INFO - Content Team activation completed successfully
+2025-08-25 10:09:28,133 - ContentTeam - INFO - Activating Content Team in full mode
+2025-08-25 10:09:28,135 - ContentTeam - INFO - Initializing orchestrator
+2025-08-25 10:09:28,136 - ContentTeam - INFO - Initializing content_strategist
+2025-08-25 10:09:28,136 - ContentTeam - INFO - Initializing trend_researcher
+2025-08-25 10:09:28,136 - ContentTeam - INFO - Initializing content_ideation
+2025-08-25 10:09:28,137 - ContentTeam - INFO - Initializing linkedin_writer
+2025-08-25 10:09:28,137 - ContentTeam - INFO - Initializing media_curator
+2025-08-25 10:09:28,137 - ContentTeam - INFO - Initializing content_repurposing
+2025-08-25 10:09:28,137 - ContentTeam - INFO - Initializing performance_analyst
+2025-08-25 10:09:28,137 - ContentTeam - INFO - Starting data gathering phase
+2025-08-25 10:09:28,138 - ContentTeam - INFO - Starting content generation phase
+2025-08-25 10:09:28,138 - ContentTeam - INFO - Compiling daily report
+2025-08-25 10:09:28,138 - ContentTeam - INFO - Delivering results
+2025-08-25 10:09:28,143 - ContentTeam - INFO - Report saved to daily-outputs/2025-08-25/viral_report.json
+2025-08-25 10:09:28,144 - ContentTeam - INFO - Markdown output saved to daily-outputs/2025-08-25/viral_content.md
+2025-08-25 10:09:28,145 - ContentTeam - INFO - Content Team activation completed successfully
+2025-08-25 10:09:40,962 - ContentTeam - INFO - Activating Content Team in full mode
+2025-08-25 10:09:40,963 - ContentTeam - INFO - Initializing orchestrator
+2025-08-25 10:09:40,963 - ContentTeam - INFO - Initializing content_strategist
+2025-08-25 10:09:40,964 - ContentTeam - INFO - Initializing trend_researcher
+2025-08-25 10:09:40,964 - ContentTeam - INFO - Initializing content_ideation
+2025-08-25 10:09:40,964 - ContentTeam - INFO - Initializing linkedin_writer
+2025-08-25 10:09:40,965 - ContentTeam - INFO - Initializing media_curator
+2025-08-25 10:09:40,965 - ContentTeam - INFO - Initializing content_repurposing
+2025-08-25 10:09:40,965 - ContentTeam - INFO - Initializing performance_analyst
+2025-08-25 10:09:40,966 - ContentTeam - INFO - Starting data gathering phase
+2025-08-25 10:09:40,966 - ContentTeam - INFO - Starting content generation phase
+2025-08-25 10:09:40,966 - ContentTeam - INFO - Compiling daily report
+2025-08-25 10:09:40,967 - ContentTeam - INFO - Delivering results
+2025-08-25 10:09:40,970 - ContentTeam - INFO - Report saved to daily-outputs/2025-08-25/viral_report.json
+2025-08-25 10:09:40,972 - ContentTeam - INFO - Markdown output saved to daily-outputs/2025-08-25/viral_content.md
+2025-08-25 10:09:40,972 - ContentTeam - INFO - Content Team activation completed successfully
+2025-08-25 10:10:40,974 - ContentTeam - INFO - Activating Content Team in full mode
+2025-08-25 10:10:40,976 - ContentTeam - INFO - Initializing orchestrator
+2025-08-25 10:10:40,976 - ContentTeam - INFO - Initializing content_strategist
+2025-08-25 10:10:40,977 - ContentTeam - INFO - Initializing trend_researcher
+2025-08-25 10:10:40,977 - ContentTeam - INFO - Initializing content_ideation
+2025-08-25 10:10:40,978 - ContentTeam - INFO - Initializing linkedin_writer
+2025-08-25 10:10:40,979 - ContentTeam - INFO - Initializing media_curator
+2025-08-25 10:10:40,979 - ContentTeam - INFO - Initializing content_repurposing
+2025-08-25 10:10:40,979 - ContentTeam - INFO - Initializing performance_analyst
+2025-08-25 10:10:40,979 - ContentTeam - INFO - Starting data gathering phase
+2025-08-25 10:10:40,980 - ContentTeam - INFO - Starting content generation phase
+2025-08-25 10:10:40,980 - ContentTeam - INFO - Compiling daily report
+2025-08-25 10:10:40,980 - ContentTeam - INFO - Delivering results
+2025-08-25 10:10:40,983 - ContentTeam - INFO - Report saved to daily-outputs/2025-08-25/viral_report.json
+2025-08-25 10:10:40,985 - ContentTeam - INFO - Markdown output saved to daily-outputs/2025-08-25/viral_content.md
+2025-08-25 10:10:40,985 - ContentTeam - INFO - Content Team activation completed successfully

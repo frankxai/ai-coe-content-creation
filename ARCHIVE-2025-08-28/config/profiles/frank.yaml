@@ -1,0 +1,172 @@
+# Frank's Content Magic Profile
+# AI Architect - Oracle AI Center of Excellence
+
+author:
+  name: Frank
+  title: Senior AI Architect
+  company: Oracle AI Center of Excellence
+  linkedin: linkedin.com/in/frank
+  twitter: "@frank"
+  
+expertise:
+  primary:
+    - Generative AI
+    - Agentic Workflows
+    - Oracle Cloud Infrastructure
+    - Enterprise AI Architecture
+  secondary:
+    - Healthcare AI Solutions
+    - Financial Services Automation
+    - Manufacturing Intelligence
+    - Retail Analytics
+  
+content_focus:
+  themes:
+    - AI Transformation Strategies
+    - Practical Implementation Guides
+    - Tool Comparisons and Reviews
+    - Industry Best Practices
+    - Future Technology Trends
+  
+  tone_preferences:
+    primary: professional-visionary
+    secondary: technical-approachable
+    avoid:
+      - overly-academic
+      - sales-heavy
+      - generic-corporate
+  
+  audience:
+    primary:
+      - C-Suite Executives (CTO, CIO, CDO)
+      - AI/ML Architects
+      - IT Directors
+    secondary:
+      - Data Scientists
+      - DevOps Engineers
+      - Business Analysts
+
+platform_settings:
+  linkedin:
+    post_length: 1500  # characters
+    posting_times:
+      - "09:00"  # Tuesday
+      - "14:00"  # Thursday
+    hashtag_count: 5
+    preferred_hashtags:
+      - "#AI"
+      - "#OracleCloud"
+      - "#DigitalTransformation"
+      - "#EnterpriseAI"
+      - "#Innovation"
+    engagement_style: thought-leader
+    
+  twitter:
+    thread_length: 7  # tweets
+    tweet_style: informative-engaging
+    posting_times:
+      - "09:00"
+      - "17:00"
+    preferred_format: numbered-thread
+    
+  blog:
+    word_count: 2000
+    structure: problem-solution-implementation
+    seo_focus: high
+    include_code: when-relevant
+    visuals: infographics-preferred
+
+content_preferences:
+  hooks:
+    favorite_types:
+      - contrarian-truth
+      - shocking-statistic
+      - future-prediction
+      - pattern-interrupt
+    power_words:
+      - transform
+      - revolutionize
+      - breakthrough
+      - game-changer
+      - paradigm-shift
+      
+  storytelling:
+    include_personal_stories: true
+    case_study_style: detailed-metrics
+    vulnerability_level: moderate
+    humor_level: subtle
+    
+  data_and_proof:
+    citation_style: inline-casual
+    metrics_preference: specific-numbers
+    case_study_depth: comprehensive
+    include_roi: always
+
+automation_settings:
+  daily_generation: true
+  auto_schedule: false
+  quality_threshold: 8.0
+  review_required: true
+  
+  workflow:
+    research_time: 10  # minutes
+    ideation_time: 5   # minutes
+    creation_time: 10  # minutes
+    total_time: 25     # minutes
+    
+  ai_model_preferences:
+    primary: claude-opus
+    secondary: gpt-4
+    fallback: gemini-pro
+    
+performance_tracking:
+  kpis:
+    - engagement_rate
+    - follower_growth
+    - share_count
+    - quality_score
+    - time_to_create
+    
+  reporting:
+    frequency: weekly
+    format: dashboard
+    insights: ai-generated
+    
+special_projects:
+  current:
+    - AI Center of Excellence Content Series
+    - Oracle Cloud AI Patterns Library
+    - Executive AI Briefings
+    
+  upcoming:
+    - Agentic AI Masterclass
+    - Industry Transformation Playbooks
+    - AI Governance Framework
+
+personal_style:
+  signature_phrases:
+    - "The game has changed..."
+    - "Here's what industry leaders know..."
+    - "Your move: innovator or spectator?"
+    
+  content_endings:
+    - thought-provoking-question
+    - clear-call-to-action
+    - future-vision-statement
+    
+  visual_preferences:
+    colors: 
+      - oracle-red
+      - tech-blue
+      - innovation-purple
+    style: minimalist-professional
+    infographic_type: data-comparison
+    
+notification_settings:
+  content_ready: email
+  performance_alerts: dashboard
+  trending_topics: real-time
+  
+version: 1.0
+last_updated: 2025-01-27
+profile_status: active

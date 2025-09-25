@@ -1,0 +1,249 @@
+# Content Magic System Configuration
+# Global settings for the multi-agent content creation system
+
+system:
+  name: Content Magic
+  version: 2.0
+  environment: production
+  
+agents:
+  orchestrator:
+    timeout: 300  # seconds
+    retry_attempts: 3
+    error_handling: graceful
+    
+  trend_researcher:
+    sources:
+      - google_trends
+      - twitter_api
+      - linkedin_pulse
+      - tech_news_rss
+      - industry_reports
+    refresh_interval: 3600  # 1 hour
+    cache_duration: 86400   # 24 hours
+    
+  content_strategist:
+    strategy_docs:
+      - overall-strategy.md
+      - brand-voice.md
+      - content-rubrics.md
+    alignment_threshold: 0.85
+    
+  content_ideation:
+    ideas_per_session: 10
+    min_quality_score: 7.0
+    diversity_factor: 0.8
+    creativity_level: high
+    
+  content_writer:
+    models:
+      primary: claude-3-opus
+      fallback: gpt-4-turbo
+    temperature: 0.7
+    max_tokens: 4000
+    
+  media_curator:
+    sources:
+      - unsplash
+      - pexels
+      - internal_library
+    image_quality: high
+    format_preferences:
+      - png
+      - jpg
+      - svg
+    
+  platform_adapter:
+    platforms:
+      - linkedin
+      - twitter
+      - blog
+      - newsletter
+    optimization_level: maximum
+    
+  performance_analyst:
+    metrics:
+      - engagement_rate
+      - reach
+      - shares
+      - comments
+      - click_through_rate
+    reporting_interval: daily
+    
+workflow:
+  phases:
+    research:
+      parallel: true
+      timeout: 300
+      agents:
+        - trend_researcher
+        - performance_analyst
+        
+    ideation:
+      parallel: false
+      timeout: 180
+      agents:
+        - content_strategist
+        - content_ideation
+        
+    creation:
+      parallel: true
+      timeout: 420
+      agents:
+        - content_writer
+        - media_curator
+        
+    adaptation:
+      parallel: true
+      timeout: 180
+      agents:
+        - platform_adapter
+        
+  quality_gates:
+    hook_strength:
+      threshold: 7.0
+      weight: 0.25
+      
+    value_density:
+      threshold: 7.0
+      weight: 0.20
+      
+    seo_optimization:
+      threshold: 8.0
+      weight: 0.20
+      
+    brand_alignment:
+      threshold: 8.0
+      weight: 0.15
+      
+    engagement_potential:
+      threshold: 7.0
+      weight: 0.20
+      
+  overall_threshold: 8.0
+  
+output:
+  formats:
+    html:
+      template: dashboard_template.html
+      styling: premium
+      
+    markdown:
+      include_metadata: true
+      formatting: github
+      
+    json:
+      pretty_print: true
+      include_analytics: true
+      
+    xml:
+      schema: agent-communication.xml
+      validation: strict
+      
+  delivery:
+    active_directory: ACTIVE/
+    archive_directory: ARCHIVE/
+    naming_convention: today-{type}.{ext}
+    
+    cleanup:
+      enabled: true
+      schedule: daily
+      retention_days: 30
+      
+performance:
+  tracking:
+    enabled: true
+    anonymous: false
+    detailed_logs: true
+    
+  optimization:
+    auto_improve: true
+    learning_rate: 0.1
+    ab_testing: enabled
+    
+  benchmarks:
+    time_to_create: 900  # 15 minutes
+    quality_score: 8.0
+    engagement_rate: 5.0  # percentage
+    
+integrations:
+  apis:
+    openai:
+      enabled: true
+      key_location: env
+      
+    anthropic:
+      enabled: true
+      key_location: env
+      
+    google:
+      enabled: true
+      key_location: env
+      
+  webhooks:
+    content_ready:
+      url: null
+      method: POST
+      
+    performance_update:
+      url: null
+      method: POST
+      
+  databases:
+    content_history:
+      type: sqlite
+      location: data/content.db
+      
+    performance_metrics:
+      type: sqlite
+      location: data/metrics.db
+      
+security:
+  api_keys:
+    storage: environment_variables
+    rotation: monthly
+    
+  content_filtering:
+    enabled: true
+    sensitivity: medium
+    
+  access_control:
+    authentication: optional
+    authorization: role-based
+    
+monitoring:
+  health_checks:
+    enabled: true
+    interval: 3600  # 1 hour
+    
+  alerts:
+    email: null
+    slack: null
+    
+  logging:
+    level: INFO
+    format: json
+    destination: logs/content-magic.log
+    
+defaults:
+  language: en
+  timezone: America/New_York
+  currency: USD
+  
+feature_flags:
+  visual_generation: true
+  auto_posting: false
+  multi_language: false
+  voice_generation: false
+  video_creation: false
+  
+maintenance:
+  auto_update: false
+  backup_enabled: true
+  backup_interval: daily
+  
+metadata:
+  created: 2025-01-27
+  last_modified: 2025-01-27
+  maintainer: AI Architect Team
+  documentation: START-HERE.md
