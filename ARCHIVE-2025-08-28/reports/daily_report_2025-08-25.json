@@ -1,0 +1,78 @@
+{
+  "date": "2025-08-25",
+  "executive_summary": {
+    "ideas_generated": 2,
+    "posts_created": 1,
+    "trending_topics": [
+      "AI Regulation",
+      "Remote Work 2024"
+    ],
+    "top_performer": "AI Implementation Guide"
+  },
+  "detailed_results": {
+    "trends": {
+      "trending_topics": [
+        "AI Regulation",
+        "Remote Work 2024"
+      ],
+      "viral_content": [
+        "CEO AI Interview",
+        "Productivity Hack Video"
+      ],
+      "industry_news": [
+        "Major Tech Merger",
+        "New AI Tool Launch"
+      ]
+    },
+    "performance": {
+      "top_post": "AI Implementation Guide",
+      "engagement_rate": "5.2%",
+      "follower_growth": "+342"
+    },
+    "strategy": {
+      "focus_themes": [
+        "Innovation",
+        "Customer Success"
+      ],
+      "content_mix": {
+        "educational": 40,
+        "thought_leadership": 30
+      }
+    },
+    "content": {
+      "ideas": [
+        {
+          "title": "5 AI Trends Every CEO Should Watch",
+          "hook": "90% of companies are missing these AI opportunities...",
+          "score": 8.5
+        },
+        {
+          "title": "The Remote Work Paradox of 2024",
+          "hook": "Why returning to office might be hurting innovation...",
+          "score": 7.8
+        }
+      ],
+      "linkedin_posts": [
+        {
+          "idea_ref": "IDEA-001",
+          "content": "Full LinkedIn post content here...",
+          "hashtags": [
+            "#AI",
+            "#Innovation",
+            "#Leadership"
+          ]
+        }
+      ],
+      "repurposing_plans": [
+        {
+          "source": "CEO AI Interview",
+          "formats": [
+            "LinkedIn Carousel",
+            "5 Short Clips",
+            "Blog Post"
+          ]
+        }
+      ]
+    }
+  }
+}
