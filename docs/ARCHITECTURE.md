@@ -71,11 +71,13 @@ Postgres adjacency tables, full-text search, and pgvector are sufficient until m
 | entities | Tool, Model, Company, Pattern, Skill, MCP, Benchmark, Standard, Concept |
 | edges | typed relationship, provenance, valid-from/to |
 | content_items | stable identity, brand, format family, topic, search intent, canonical URL |
-| content_versions | semver, Git SHA, source cutoff, claim-set hash, manifest hash, changelog |
-| content_claims | content version, block ID, claim ID, narrative role |
-| assets | type, locale, content hash, voice/render config, R2 URI, QC status |
-| approvals | manifest hash, decision, approver, time, scope |
-| publications | target, external ID, canonical URL, receipt, publication time |
+| content_versions | semver, Git SHA, source cutoff, claim-set hash, lineage, changelog |
+| content_claims | content version, block ID, claim version ID, narrative role |
+| assets | type, locale, content hash, MIME/size/duration, voice/render config, R2 URI, QC evidence |
+| release_manifests | immutable payload URI/hash, required assets/destinations, rollback target |
+| approval_events | manifest hash, decision, approver, time, scope |
+| publication_receipts | manifest hash, target, external ID, content hash, receipt, publication time |
+| workflow_projections | derived current state, blocker, attempt, recovery target |
 | cost_events | provider, model, tokens/characters/minutes, price version, actual cost |
 | metric_daily | content, version, channel, intent, metric, value |
 
@@ -96,9 +98,11 @@ Temporal classes:
 - volatile;
 - real_time.
 
-Claim status:
+Claim status is derived from append-only `VerificationEvent` history:
 
-**candidate → verified → disputed → stale → retracted**
+**candidate_created | verified | disputed | stale | reverified | retracted**
+
+Claims are versioned. Disputed or stale claims can be reverified without rewriting history.
 
 Evidence hierarchy:
 
@@ -120,23 +124,21 @@ Use MDX as a semantic document model, not only prose.
 - Audio asides express format-specific transitions.
 - Exercises become Academy artifacts.
 
-A release freezes:
+The Edition Object is a business concept implemented through separate contracts:
 
-| Field | Meaning |
-| --- | --- |
-| schema_version | Contract compatibility |
-| content_id | Stable work identity |
-| version | Semantic edition version |
-| git_sha | Exact authored state |
-| source_cutoff_at | Research boundary |
-| claim_set_hash | Exact evidence binding |
-| prompt_versions | Agent instruction provenance |
-| render_config_hash | Exact build configuration |
-| voice_persona_id | Governed voice identity |
-| rights_manifest_id | Consent/license boundary |
-| formats/channels | Required release targets |
+| Contract | Mutability | Purpose |
+| --- | --- | --- |
+| EditionDraft | Mutable until lock | Editorial identity, scope, authorship, formats, planned channels |
+| ClaimVersion + VerificationEvent | Append-only | Evidence and verification history |
+| ReleaseManifestPayload | Immutable | Git state, claims lock, rights, render config, assets, required destinations |
+| ReleaseManifestEnvelope | Immutable | Canonical payload plus externally calculated SHA-256 |
+| ApprovalEvent | Append-only | Human decision bound to the exact envelope hash |
+| PublicationReceipt | Append-only | Destination evidence created after publication |
+| WorkflowState | Derived projection | Current operational state and recovery target |
 
-Export claims-lock.json for every release so historical editions remain reproducible after live claims change.
+The manifest payload never contains its own hash. Approval and publication receipts never mutate it. A byte change produces a new envelope hash and invalidates prior approval.
+
+Export `claims-lock.json` for every release so historical editions remain reproducible after live claims change. See [Contract split and invariants](CONTRACTS.md).
 
 ## Agent and subagent topology
 
@@ -174,15 +176,15 @@ Crawled content is untrusted data. Research workers cannot execute discovered in
 4. **Release gate** — exact manifest hash, cover, audio sample, rights, destinations, and offer.
 5. **Exception gate** — legal, financial, medical, contentious, or material correction.
 
-Closing a Linear issue is not approval. Approval is a signed studio event bound to the exact manifest hash. Trigger resumes only from that event.
+Closing a Linear issue is not approval. Approval is an append-only signed studio event bound to the exact ReleaseManifestEnvelope hash. Trigger resumes only from that event. Altering one payload byte invalidates the approval.
 
 ## Release state model
 
-Append-only transitions:
+Normal derived path:
 
 **backlog → brief_approved → evidence_locked → draft_ready → verified → editorial_approved → assets_ready → release_approved → published → monitoring → superseded**
 
-Exceptional states: blocked, failed, withdrawn.
+Append-only exceptional/recovery events include **blocked → resumed**, **failed → retrying | abandoned**, **published → withdrawn**, and **published → corrected_by**.
 
 Guards:
 
@@ -193,13 +195,13 @@ Guards:
 - release_approved — rights and distribution manifest approved;
 - published — mandatory destinations returned receipts and smoke tests passed.
 
-A published version never moves backward. Updates create a new version.
+A published version never mutates or moves backward. Updates create a new immutable version. The living web URL is a mutable alias to the latest approved version.
 
 ## Ebook and document render
 
 1. Parse MDX into normalized AST.
 2. Resolve claims, citations, diagrams, glossary, exercises, and internal links.
-3. Render Next.js web, EPUB3, PDF, spoken script, and source-note appendix.
+3. Render Next.js/MDX web, Pandoc-to-EPUB3, Paged.js/Chromium PDF, spoken script, and source-note appendix.
 4. Validate schema, citations, code, links, EPUBCheck, font embedding, overflow, accessibility, and rights.
 5. Stage immutable assets in R2.
 6. Generate semantic and visual diff.
@@ -305,7 +307,9 @@ Semantic versions:
 - Minor — new section/capability/substantial evidence.
 - Major — changed framework, architecture, audience, or promise.
 
-## Repository target
+## Runtime repository target
+
+This repository owns strategy, schemas, fixtures, content source, and evaluation assets until extraction. The production application will live in a dedicated monorepo after contract acceptance; legacy `ACTIVE/` output is not part of the Starlight runtime.
 
 ```text
 starlight-publishing-os/
