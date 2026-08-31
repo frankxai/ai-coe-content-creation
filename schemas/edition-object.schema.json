@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://starlightintelligence.org/schemas/edition-object.schema.json",
-  "title": "Starlight Edition Object",
-  "description": "Versioned contract for a living guide, ebook, podcast, audiobook, or operator edition rendered from one evidence-bound intellectual object.",
+  "title": "Starlight Edition Draft",
+  "description": "Mutable editorial contract for a planned Starlight edition. Release manifests, hashes, approvals, assets, receipts, and operational workflow projections are governed by separate immutable or append-only contracts.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -10,22 +10,27 @@
     "content_id",
     "content_version_id",
     "version",
+    "version_lineage",
     "brand",
+    "content_kind",
+    "locale",
     "title",
+    "author_ids",
+    "publisher_imprint_id",
+    "legal_publisher_id",
+    "rights_holder_id",
     "canonical_intent",
     "canonical_url",
-    "source_cutoff_at",
-    "git_sha",
-    "claim_set_hash",
-    "render_config_hash",
-    "rights_manifest_id",
-    "formats",
-    "status"
+    "commercial_role",
+    "temporal_class",
+    "planned_formats",
+    "mandatory_channels",
+    "editorial_status"
   ],
   "properties": {
     "schema_version": {
       "type": "integer",
-      "const": 1
+      "const": 2
     },
     "content_id": {
       "type": "string",
@@ -35,13 +40,28 @@
       "type": "string",
       "pattern": "^cv_[a-z0-9]{8,32}$"
     },
-    "release_id": {
-      "type": ["string", "null"],
-      "pattern": "^rel_[a-z0-9]{8,32}$"
-    },
     "version": {
       "type": "string",
       "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "version_lineage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["change_kind"],
+      "properties": {
+        "prior_content_version_id": {
+          "type": ["string", "null"],
+          "pattern": "^cv_[a-z0-9]{8,32}$"
+        },
+        "supersedes_release_id": {
+          "type": ["string", "null"],
+          "pattern": "^rel_[a-z0-9]{8,32}$"
+        },
+        "change_kind": {
+          "type": "string",
+          "enum": ["new", "patch", "minor", "major", "correction", "withdrawal"]
+        }
+      }
     },
     "brand": {
       "type": "string",
@@ -51,6 +71,24 @@
         "frankx",
         "ai-architect-academy"
       ]
+    },
+    "content_kind": {
+      "type": "string",
+      "enum": [
+        "living-guide",
+        "comparison",
+        "release-brief",
+        "field-guide",
+        "operator-manual",
+        "benchmark-report",
+        "podcast-episode",
+        "audiobook",
+        "academy-module"
+      ]
+    },
+    "locale": {
+      "type": "string",
+      "pattern": "^[a-z]{2,3}(-[A-Z]{2})?$"
     },
     "title": {
       "type": "string",
@@ -63,14 +101,26 @@
     },
     "author_ids": {
       "type": "array",
-      "items": {"type": "string"},
+      "items": {"type": "string", "minLength": 1},
       "minItems": 1,
       "uniqueItems": true
     },
     "editor_ids": {
       "type": "array",
-      "items": {"type": "string"},
+      "items": {"type": "string", "minLength": 1},
       "uniqueItems": true
+    },
+    "publisher_imprint_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "legal_publisher_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "rights_holder_id": {
+      "type": "string",
+      "minLength": 1
     },
     "canonical_intent": {
       "type": "string",
@@ -101,68 +151,70 @@
       "enum": ["stable", "release_bound", "volatile", "real_time"]
     },
     "source_cutoff_at": {
-      "type": "string",
+      "type": ["string", "null"],
       "format": "date-time"
     },
     "next_review_at": {
       "type": ["string", "null"],
       "format": "date-time"
     },
-    "git_sha": {
-      "type": "string",
-      "pattern": "^[a-f0-9]{40}$"
-    },
-    "claim_set_hash": {
-      "type": "string",
-      "pattern": "^sha256:[a-f0-9]{64}$"
-    },
-    "manifest_hash": {
-      "type": ["string", "null"],
-      "pattern": "^sha256:[a-f0-9]{64}$"
-    },
-    "render_config_hash": {
-      "type": "string",
-      "pattern": "^sha256:[a-f0-9]{64}$"
-    },
-    "prompt_versions": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": ["agent", "version", "hash"],
-        "properties": {
-          "agent": {"type": "string"},
-          "version": {"type": "string"},
-          "hash": {"type": "string", "pattern": "^sha256:[a-f0-9]{64}$"}
-        }
-      }
-    },
-    "voice_persona_id": {
-      "type": ["string", "null"],
-      "pattern": "^voice_[a-z0-9]{6,32}$"
-    },
-    "rights_manifest_id": {
-      "type": "string",
-      "pattern": "^rights_[a-z0-9]{6,32}$"
-    },
-    "formats": {
+    "planned_formats": {
       "type": "array",
       "items": {
         "type": "string",
-        "enum": ["web", "pdf", "epub", "podcast", "audiobook", "transcript", "operator-pack", "academy"]
+        "enum": [
+          "web",
+          "pdf",
+          "epub",
+          "podcast",
+          "audiobook",
+          "transcript",
+          "operator-pack",
+          "academy"
+        ]
       },
       "minItems": 1,
       "uniqueItems": true
     },
-    "channels": {
+    "mandatory_channels": {
       "type": "array",
-      "items": {
-        "type": "string",
-        "enum": ["owned-web", "owned-rss", "spotify", "apple-podcasts", "youtube", "direct-store", "audible", "github", "email", "private-feed"]
-      },
+      "items": {"$ref": "#/$defs/channel"},
+      "minItems": 1,
       "uniqueItems": true
     },
-    "status": {
+    "optional_channels": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/channel"},
+      "uniqueItems": true
+    },
+    "narration_policy": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "required": ["mode", "disclosure_required"],
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": ["human", "licensed-stock", "authorized-clone", "mixed", "none"]
+        },
+        "preferred_voice_persona_id": {
+          "type": ["string", "null"],
+          "pattern": "^voice_[a-z0-9]{6,32}$"
+        },
+        "disclosure_required": {
+          "type": "boolean"
+        }
+      }
+    },
+    "git": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "properties": {
+        "repository": {"type": "string"},
+        "branch": {"type": "string"},
+        "content_path": {"type": "string"}
+      }
+    },
+    "editorial_status": {
       "type": "string",
       "enum": [
         "backlog",
@@ -171,56 +223,29 @@
         "draft_ready",
         "verified",
         "editorial_approved",
-        "assets_ready",
-        "release_approved",
-        "published",
-        "monitoring",
-        "superseded",
         "blocked",
-        "failed",
-        "withdrawn"
+        "abandoned"
       ]
     },
-    "approval": {
-      "type": ["object", "null"],
-      "additionalProperties": false,
-      "required": ["manifest_hash", "approver_id", "approved_at"],
-      "properties": {
-        "manifest_hash": {"type": "string", "pattern": "^sha256:[a-f0-9]{64}$"},
-        "approver_id": {"type": "string"},
-        "approved_at": {"type": "string", "format": "date-time"},
-        "scope": {"type": "string"}
-      }
-    },
-    "assets": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": ["asset_id", "type", "hash", "r2_uri", "qc_status"],
-        "properties": {
-          "asset_id": {"type": "string"},
-          "type": {"type": "string"},
-          "locale": {"type": "string"},
-          "hash": {"type": "string", "pattern": "^sha256:[a-f0-9]{64}$"},
-          "r2_uri": {"type": "string", "format": "uri"},
-          "qc_status": {"type": "string", "enum": ["pending", "passed", "failed", "waived"]}
-        }
-      }
-    },
-    "publication_receipts": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": ["target", "external_id", "url", "published_at"],
-        "properties": {
-          "target": {"type": "string"},
-          "external_id": {"type": "string"},
-          "url": {"type": "string", "format": "uri"},
-          "published_at": {"type": "string", "format": "date-time"}
-        }
-      }
+    "kill_merge_criterion": {
+      "type": ["string", "null"]
+    }
+  },
+  "$defs": {
+    "channel": {
+      "type": "string",
+      "enum": [
+        "owned-web",
+        "owned-rss",
+        "spotify",
+        "apple-podcasts",
+        "youtube",
+        "direct-store",
+        "audible",
+        "github",
+        "email",
+        "private-feed"
+      ]
     }
   }
 }
