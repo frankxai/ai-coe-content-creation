@@ -1,0 +1,251 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://starlightintelligence.org/schemas/edition-object.schema.json",
+  "title": "Starlight Edition Draft",
+  "description": "Mutable editorial contract for a planned Starlight edition. Release manifests, hashes, approvals, assets, receipts, and operational workflow projections are governed by separate immutable or append-only contracts.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "content_id",
+    "content_version_id",
+    "version",
+    "version_lineage",
+    "brand",
+    "content_kind",
+    "locale",
+    "title",
+    "author_ids",
+    "publisher_imprint_id",
+    "legal_publisher_id",
+    "rights_holder_id",
+    "canonical_intent",
+    "canonical_url",
+    "commercial_role",
+    "temporal_class",
+    "planned_formats",
+    "mandatory_channels",
+    "editorial_status"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 2
+    },
+    "content_id": {
+      "type": "string",
+      "pattern": "^cnt_[a-z0-9]{8,32}$"
+    },
+    "content_version_id": {
+      "type": "string",
+      "pattern": "^cv_[a-z0-9]{8,32}$"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "version_lineage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["change_kind"],
+      "properties": {
+        "prior_content_version_id": {
+          "type": ["string", "null"],
+          "pattern": "^cv_[a-z0-9]{8,32}$"
+        },
+        "supersedes_release_id": {
+          "type": ["string", "null"],
+          "pattern": "^rel_[a-z0-9]{8,32}$"
+        },
+        "change_kind": {
+          "type": "string",
+          "enum": ["new", "patch", "minor", "major", "correction", "withdrawal"]
+        }
+      }
+    },
+    "brand": {
+      "type": "string",
+      "enum": [
+        "starlight-intelligence-institute",
+        "starlight-intelligence-systems",
+        "frankx",
+        "ai-architect-academy"
+      ]
+    },
+    "content_kind": {
+      "type": "string",
+      "enum": [
+        "living-guide",
+        "comparison",
+        "release-brief",
+        "field-guide",
+        "operator-manual",
+        "benchmark-report",
+        "podcast-episode",
+        "audiobook",
+        "academy-module"
+      ]
+    },
+    "locale": {
+      "type": "string",
+      "pattern": "^[a-z]{2,3}(-[A-Z]{2})?$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 180
+    },
+    "subtitle": {
+      "type": ["string", "null"],
+      "maxLength": 240
+    },
+    "author_ids": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "editor_ids": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "publisher_imprint_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "legal_publisher_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "rights_holder_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "canonical_intent": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 160
+    },
+    "canonical_url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "parent_cluster": {
+      "type": ["string", "null"]
+    },
+    "commercial_role": {
+      "type": "string",
+      "enum": [
+        "free-authority",
+        "lead-magnet",
+        "paid-edition",
+        "operator-pack",
+        "academy-module",
+        "team-license",
+        "archive"
+      ]
+    },
+    "temporal_class": {
+      "type": "string",
+      "enum": ["stable", "release_bound", "volatile", "real_time"]
+    },
+    "source_cutoff_at": {
+      "type": ["string", "null"],
+      "format": "date-time"
+    },
+    "next_review_at": {
+      "type": ["string", "null"],
+      "format": "date-time"
+    },
+    "planned_formats": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "web",
+          "pdf",
+          "epub",
+          "podcast",
+          "audiobook",
+          "transcript",
+          "operator-pack",
+          "academy"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "mandatory_channels": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/channel"},
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "optional_channels": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/channel"},
+      "uniqueItems": true
+    },
+    "narration_policy": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "required": ["mode", "disclosure_required"],
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": ["human", "licensed-stock", "authorized-clone", "mixed", "none"]
+        },
+        "preferred_voice_persona_id": {
+          "type": ["string", "null"],
+          "pattern": "^voice_[a-z0-9]{6,32}$"
+        },
+        "disclosure_required": {
+          "type": "boolean"
+        }
+      }
+    },
+    "git": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "properties": {
+        "repository": {"type": "string"},
+        "branch": {"type": "string"},
+        "content_path": {"type": "string"}
+      }
+    },
+    "editorial_status": {
+      "type": "string",
+      "enum": [
+        "backlog",
+        "brief_approved",
+        "evidence_locked",
+        "draft_ready",
+        "verified",
+        "editorial_approved",
+        "blocked",
+        "abandoned"
+      ]
+    },
+    "kill_merge_criterion": {
+      "type": ["string", "null"]
+    }
+  },
+  "$defs": {
+    "channel": {
+      "type": "string",
+      "enum": [
+        "owned-web",
+        "owned-rss",
+        "spotify",
+        "apple-podcasts",
+        "youtube",
+        "direct-store",
+        "audible",
+        "github",
+        "email",
+        "private-feed"
+      ]
+    }
+  }
+}

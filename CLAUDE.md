@@ -1,82 +1,79 @@
-# CLAUDE.md - Content Magic Integration
+# CLAUDE.md — Starlight Publishing Engine
 
-## Claude Code Commands for Content Magic System
+## Repository role
 
-### Quick Content Creation
-```
-@Content Magic create viral LinkedIn post about [TOPIC] using the master prompts and agent system
-```
+This repository is the strategy, contract-design, canonical editorial source, and evaluation surface for the Starlight Intelligence Institute publishing system.
 
-### Daily Workflow Activation
-```
-@Content Magic execute daily content workflow:
-1. Research latest AI trends
-2. Generate 5 viral content ideas 
-3. Create LinkedIn post + Twitter thread
-4. Save to ACTIVE/ directory
-Topic focus: [YOUR TOPIC]
-```
+The production runtime will be extracted into a dedicated `starlight-publishing-os` monorepo after contract acceptance and a passing golden release.
 
-### Custom Content Request
-```
-@Content Magic create content using:
-- Agent: agents/05-linkedin-writer-agent.md
-- Prompt: prompts/master-content-creation-prompt.md
-- Strategy: overall-strategy.md
-- Topic: [YOUR TOPIC]
-- Output: LinkedIn post (1500 chars) + Twitter thread (7 tweets)
-```
+## Authority boundaries
 
-### Research & Analysis
-```
-@Content Magic research trending topics in AI and enterprise transformation, then create thought leadership content optimized for Oracle AI Center of Excellence brand voice
-```
+- GitHub: prose, semantic MDX, diagrams, prompts, schemas, tests, fixtures, code.
+- Supabase/Postgres: sources, snapshots, claims, verification events, graph edges, workflow projections, approvals, receipts, metrics.
+- R2: immutable snapshots and release binaries.
+- Trigger.dev: long-running production orchestration.
+- Notion, Linear, and Google Drive: projections; they cannot overwrite canonical Git or Supabase state.
 
-### Full System Execution
-```
-@Content Magic run complete content creation pipeline:
+## Required operating sequence
 
-Phase 1: Research (agents/03-trend-researcher-agent.md)
-Phase 2: Strategy (agents/02-content-strategist-agent.md) 
-Phase 3: Ideation (agents/04-content-ideation-agent.md)
-Phase 4: Creation (prompts/master-content-creation-prompt.md)
-Phase 5: Adaptation (agents/10-platform-adapter-agent.md)
+1. Commission a bounded intent and canonical URL.
+2. Build a primary-source research pack and immutable snapshots.
+3. Extract versioned claims and independent verification events.
+4. Lock the claim set.
+5. Draft semantic MDX from only the locked pack.
+6. Run factual, editorial, code, citation, search, accessibility, rights, and render gates.
+7. Build an immutable ReleaseManifestPayload.
+8. Canonicalize and externally hash the payload.
+9. Obtain a human ApprovalEvent for the exact hash.
+10. Render and publish mandatory formats/channels idempotently.
+11. Store PublicationReceipts and run smoke tests.
+12. Monitor claims, search, completion, conversion, cost, and freshness.
 
-Save all outputs to ACTIVE/ directory with today's date
-```
+## Contract rules
 
-## Command Shortcuts
+- Never combine mutable workflow state, immutable release payload, approval, and post-publication receipts in one object.
+- A release payload never contains its own hash.
+- A one-byte payload change invalidates prior approval.
+- Claim history is append-only; stale or disputed claims can be reverified through a new event.
+- A living URL is an alias to the latest approved immutable version.
+- No factual assertion can publish without a verified claim ID and exact immutable source locator.
+- No audio can publish without narrator identity, disclosure, commercial rights, and passing QC.
+- No release is approved by closing a Linear issue.
 
-### For LinkedIn Content
-```
-@LinkedIn create viral post about [TOPIC] using Content Magic master prompt
-```
+See `docs/CONTRACTS.md`, `docs/ARCHITECTURE.md`, and `docs/QUALITY-GATES.md`.
 
-### For Twitter Threads
-```
-@Twitter create engaging thread about [TOPIC] using Content Magic agents
-```
+## Agent boundaries
 
-### For Blog Articles
-```
-@Blog create comprehensive article about [TOPIC] using Content Magic framework
-```
+- Radar writes candidate source events only.
+- Ingestion writes immutable snapshots only.
+- Claim Compiler writes candidate claim versions.
+- Adversarial Verifier writes verification events; it cannot edit prose.
+- Editorial Architect owns thesis and outline.
+- Chapter agents write only assigned paths from locked research.
+- Lab agent runs code/examples in a sandbox.
+- Voice Editor and Citation Auditor propose or block; neither publishes.
+- Narration Adapter cannot change factual meaning.
+- Audio Producer writes staged assets only.
+- Release Operator can publish only an approved envelope hash.
+- Atomizer cannot introduce new claims.
+- Freshness Agent opens update candidates; it never mutates published releases.
 
-## System Integration Notes
+Every delegated task must declare permitted source/claim IDs, expected schema, cost ceiling, maximum calls, output path, and evaluation rubric.
 
-- All Content Magic prompts are in `prompts/` directory
-- Agent definitions are in `agents/` directory  
-- Master strategy is in `overall-strategy.md`
-- Outputs should go to `ACTIVE/` directory
-- Use profile settings from `config/profiles/frank.yaml`
+## Repository transition
 
-## Quick Reference
+The prior Content Magic instructions and `ACTIVE/` output workflow are legacy only. Do not invoke them for Starlight editions. Existing assets may be mined as non-authoritative source material after rights and evidence review.
 
-**Master Prompt**: `prompts/master-content-creation-prompt.md`
-**Agent Team**: `agents/00-team-overview.md`  
-**Strategy Guide**: `overall-strategy.md`
-**Output Location**: `ACTIVE/`
-**Visual Guide**: `ASSESSMENT-DASHBOARD.html`
+## First golden release
 
----
-*Use these commands with Claude Code to activate the Content Magic system*
+**Graph Engineering for AI Agents**
+
+Pass condition:
+
+- original thesis, three diagrams, two reproduced workflows, decision model, failure modes, and cost;
+- web, EPUB, PDF, spoken script, audio, transcript, and source notes share the same content/version IDs;
+- every factual assertion resolves to a verified claim;
+- all required assets pass validators;
+- exact-hash human approval exists;
+- publication is idempotent;
+- prior web/feed alias can be restored in under 15 minutes without deleting evidence.
