@@ -1,0 +1,226 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://starlightintelligence.org/schemas/edition-object.schema.json",
+  "title": "Starlight Edition Object",
+  "description": "Versioned contract for a living guide, ebook, podcast, audiobook, or operator edition rendered from one evidence-bound intellectual object.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "content_id",
+    "content_version_id",
+    "version",
+    "brand",
+    "title",
+    "canonical_intent",
+    "canonical_url",
+    "source_cutoff_at",
+    "git_sha",
+    "claim_set_hash",
+    "render_config_hash",
+    "rights_manifest_id",
+    "formats",
+    "status"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "content_id": {
+      "type": "string",
+      "pattern": "^cnt_[a-z0-9]{8,32}$"
+    },
+    "content_version_id": {
+      "type": "string",
+      "pattern": "^cv_[a-z0-9]{8,32}$"
+    },
+    "release_id": {
+      "type": ["string", "null"],
+      "pattern": "^rel_[a-z0-9]{8,32}$"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "brand": {
+      "type": "string",
+      "enum": [
+        "starlight-intelligence-institute",
+        "starlight-intelligence-systems",
+        "frankx",
+        "ai-architect-academy"
+      ]
+    },
+    "title": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 180
+    },
+    "subtitle": {
+      "type": ["string", "null"],
+      "maxLength": 240
+    },
+    "author_ids": {
+      "type": "array",
+      "items": {"type": "string"},
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "editor_ids": {
+      "type": "array",
+      "items": {"type": "string"},
+      "uniqueItems": true
+    },
+    "canonical_intent": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 160
+    },
+    "canonical_url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "parent_cluster": {
+      "type": ["string", "null"]
+    },
+    "commercial_role": {
+      "type": "string",
+      "enum": [
+        "free-authority",
+        "lead-magnet",
+        "paid-edition",
+        "operator-pack",
+        "academy-module",
+        "team-license",
+        "archive"
+      ]
+    },
+    "temporal_class": {
+      "type": "string",
+      "enum": ["stable", "release_bound", "volatile", "real_time"]
+    },
+    "source_cutoff_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "next_review_at": {
+      "type": ["string", "null"],
+      "format": "date-time"
+    },
+    "git_sha": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}$"
+    },
+    "claim_set_hash": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "manifest_hash": {
+      "type": ["string", "null"],
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "render_config_hash": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "prompt_versions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["agent", "version", "hash"],
+        "properties": {
+          "agent": {"type": "string"},
+          "version": {"type": "string"},
+          "hash": {"type": "string", "pattern": "^sha256:[a-f0-9]{64}$"}
+        }
+      }
+    },
+    "voice_persona_id": {
+      "type": ["string", "null"],
+      "pattern": "^voice_[a-z0-9]{6,32}$"
+    },
+    "rights_manifest_id": {
+      "type": "string",
+      "pattern": "^rights_[a-z0-9]{6,32}$"
+    },
+    "formats": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["web", "pdf", "epub", "podcast", "audiobook", "transcript", "operator-pack", "academy"]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "channels": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["owned-web", "owned-rss", "spotify", "apple-podcasts", "youtube", "direct-store", "audible", "github", "email", "private-feed"]
+      },
+      "uniqueItems": true
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "backlog",
+        "brief_approved",
+        "evidence_locked",
+        "draft_ready",
+        "verified",
+        "editorial_approved",
+        "assets_ready",
+        "release_approved",
+        "published",
+        "monitoring",
+        "superseded",
+        "blocked",
+        "failed",
+        "withdrawn"
+      ]
+    },
+    "approval": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "required": ["manifest_hash", "approver_id", "approved_at"],
+      "properties": {
+        "manifest_hash": {"type": "string", "pattern": "^sha256:[a-f0-9]{64}$"},
+        "approver_id": {"type": "string"},
+        "approved_at": {"type": "string", "format": "date-time"},
+        "scope": {"type": "string"}
+      }
+    },
+    "assets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["asset_id", "type", "hash", "r2_uri", "qc_status"],
+        "properties": {
+          "asset_id": {"type": "string"},
+          "type": {"type": "string"},
+          "locale": {"type": "string"},
+          "hash": {"type": "string", "pattern": "^sha256:[a-f0-9]{64}$"},
+          "r2_uri": {"type": "string", "format": "uri"},
+          "qc_status": {"type": "string", "enum": ["pending", "passed", "failed", "waived"]}
+        }
+      }
+    },
+    "publication_receipts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["target", "external_id", "url", "published_at"],
+        "properties": {
+          "target": {"type": "string"},
+          "external_id": {"type": "string"},
+          "url": {"type": "string", "format": "uri"},
+          "published_at": {"type": "string", "format": "date-time"}
+        }
+      }
+    }
+  }
+}
