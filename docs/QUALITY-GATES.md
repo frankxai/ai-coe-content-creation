@@ -10,6 +10,7 @@ A content object cannot enter research without:
 - commercial role: free authority, paid manual, Academy, license, or archive;
 - required original evidence;
 - accountable editor;
+- publisher imprint, legal publisher, and rights holder;
 - freshness class and review SLA;
 - kill/merge criterion.
 
@@ -50,6 +51,7 @@ A content object cannot enter research without:
 
 - Narrator, voice owner, provider, model, voice ID, territory, term, and commercial rights are recorded.
 - Consent artifact exists for every clone.
+- Clone training material and consent artifacts have private storage, least-privilege access, retention, and deletion rules.
 - Synthetic narration is disclosed.
 - No community/shared voice is assumed durable.
 - No retiring voice is used as permanent identity.
@@ -65,8 +67,9 @@ A content object cannot enter research without:
 - Numerals, URLs, acronyms, code, and product names are normalized.
 - Pronunciation lexicon version is stored.
 - Segment order and count match the manifest.
-- ASR round-trip mismatch remains below the release threshold.
-- No clipping, missing audio, repeated segment, discontinuity, or unexplained silence.
+- ASR round-trip meets named-entity and semantic thresholds defined in the render configuration.
+- Zero missing or reordered segments, zero clipping, zero unapproved technical-name pronunciation errors, zero repeated segments, and zero unexplained silence.
+- A QC waiver requires reason, scope, policy, approver, and timestamp.
 - Transcript, VTT/SRT, and chapter markers align.
 - Podcast and audiobook mastering profiles remain separate.
 - Human listens to opening, midpoint, ending, and all flagged segments.
@@ -84,7 +87,7 @@ A content object cannot enter research without:
 
 ### EPUB
 
-- EPUBCheck passes.
+- EPUBCheck completes with zero errors.
 - Navigation, landmarks, internal links, alt descriptions, fonts, and cover metadata pass.
 - No layout assumes a fixed page.
 
@@ -99,10 +102,13 @@ A content object cannot enter research without:
 
 - Exact Git SHA, claim-set hash, render-config hash, prompt versions, rights manifest, and asset hashes are frozen.
 - Requested formats pass validators.
-- Approval is bound to the exact manifest hash.
+- ReleaseManifestPayload excludes its own hash, approvals, receipts, and workflow state.
+- RFC 8785 canonicalization produces the external envelope hash.
+- Approval is bound to the exact envelope hash; a one-byte payload change invalidates it.
+- Replaying the same publish event creates exactly one logical publication and one effective receipt.
 - R2 enclosure hash, duration, MIME, byte range, and public GET/HEAD pass.
 - RSS GUID is stable and independent of asset URL.
-- Required distribution endpoints return receipts.
+- Every mandatory distribution endpoint returns one content-hash-bound receipt; optional endpoint failure is reported without corrupting required-channel state.
 - Rollback target is known.
 - Public smoke test passes.
 - Cost events are complete.
@@ -134,4 +140,25 @@ Linear completion is not release approval.
 - Correction creates a new version and visible change note.
 - Published versions never move backward in state.
 - Feed enclosure replacement is reserved for technical defects; material changes receive an update/correction release.
-- Prior release can be restored in under 15 minutes.
+- Prior web/feed alias can be restored in under 15 minutes without deleting evidence.
+- Blocked and failed runs have explicit resume, retry, dead-letter, abandon, and rollback events.
+- Withdrawal preserves the immutable release and publishes a visible reason.
+
+## Contract and CI gate
+
+The runtime contract implementation cannot merge without:
+
+- separate schemas for EditionDraft, ReleaseManifestPayload, ApprovalEvent, PublicationReceipt, and WorkflowState;
+- deterministic RFC 8785 canonicalization and SHA-256 tamper tests;
+- a valid draft fixture and valid published web/audio fixture;
+- invalid fixtures for missing approval, missing audio rights, failed QC, unsupported waiver, missing mandatory receipt, and altered payload;
+- Markdown, link, schema, fixture, and golden-release checks in required CI;
+- one golden release whose web, EPUB, PDF, audio, transcript, approvals, and receipts join through the same content and version IDs.
+
+## Commercial decision gate
+
+Pilot evidence is directional, not statistical proof.
+
+- A voice persona can graduate after a blinded panel review plus at least 20 target-listener comparisons, but the result is recorded as a pilot decision.
+- A 30-day purchase signal means collected paid preorders or a predeclared number of verified buyer commitments—not likes, waitlist entries, or survey enthusiasm.
+- A 90-day commercial gate reports collected revenue separately from a probability-weighted signed pipeline; neither is labeled as achieved recurring revenue.
