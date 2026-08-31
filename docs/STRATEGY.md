@@ -27,7 +27,7 @@ The screenshots that initiated this plan show a crowded beginner/tutorial catego
 | FrankX | Personal distribution and commercial pathway | POV excerpts with canonical links, never mirrored full guides |
 | Arcanea | Creative and learning applications | No duplicate technical AI-architecture corpus |
 
-Do not invent a generic “AI Institute” brand or new domain. **Starlight Intelligence Institute** is distinct, extensible, and compounds the existing entity.
+Do not invent a generic “AI Institute” brand. **Starlight Intelligence Institute** is distinct, extensible, and compounds the existing entity. Proposed identity split, subject to legal and domain clearance: `starlightintelligence.org` for the Institute/library/feed and `starlightintelligence.ai` for Systems/software.
 
 ### Attribution rules
 
@@ -96,10 +96,10 @@ Run a blinded 12-sample benchmark before choosing the persistent voice.
 - Four script types: release delta, technical explanation, narrative thesis, dialogue.
 - Three candidate providers: ElevenLabs, xAI/Grok, Speechify or Gemini.
 - Score naturalness, authority, technical pronunciation, fatigue after 10 minutes, edit stability, cost, latency, and rights durability.
-- Twenty listeners are sufficient for the pilot when at least five are target buyers.
+- A blinded panel plus at least twenty listeners—including at least five target buyers—is a pilot decision rule, not statistical proof.
 - Select one female research persona and one Frank-clone pathway; do not rotate voices by episode.
 
-### Current API economics
+### API economics — planning snapshot 31 August 2026
 
 Planning basis: approximately 60,000 characters per finished hour. Add 15–30% for retakes, alternate takes, and mastering. Taxes and human production are excluded.
 
@@ -461,3 +461,15 @@ Exit gate: source-change-to-publication SLA below 48 hours and a credible route 
 - [YouTube podcast discovery](https://support.google.com/youtube/answer/12950577)
 - [IndexNow documentation](https://www.indexnow.org/documentation)
 - [ACX audio submission requirements](https://help.acx.com/s/article/what-are-the-acx-audio-submission-requirements)
+
+## Evidence and forecast policy
+
+This strategy must satisfy the same claim discipline it prescribes.
+
+- Provider prices, model availability, voice-retirement dates, MCP capability, platform eligibility, and search rules are time-sensitive claims. Store the official source snapshot, effective date, captured date, scope, and next verification date.
+- Cost tables above are planning snapshots dated 31 August 2026, not procurement quotes. Taxes, plan minimums, overages, retries, mastering, labor, and future price changes remain outside the clean-render estimates.
+- Revenue mix, ranking targets, conversion targets, subscriber targets, and staffing scenarios are forecasts. Each must retain its assumptions, confidence range, owner, horizon, and later outcome score.
+- A 30-day purchase signal means collected paid preorders or a predeclared count of verified buyer commitments.
+- A 90-day commercial gate reports collected revenue separately from probability-weighted signed pipeline.
+- Search ranking is an objective, not a promise. Progress is measured through governed query share of voice, original evidence, citations, returning audience, and conversion.
+- IndexNow is used only for participating search engines. Google discovery uses canonical XML sitemaps and Search Console; Google's general Indexing API is not used for ordinary editorial pages.
