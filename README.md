@@ -95,6 +95,17 @@ The contract-implementation PR that follows this ADR must include:
 - Markdown/link/reference checks;
 - a golden release whose web, EPUB, PDF, audio, transcript, and receipts share the same content and version IDs.
 
+## Execution surfaces
+
+- [Executive Google Doc](https://docs.google.com/document/d/1KgXDKDWhzNo4YEwsWuOV1ERVA7BUHy9OJM8ogI4f4DE/edit?usp=drivesdk)
+- [Notion command center](https://app.notion.com/p/3cd26ac2b7f6810695d7da58a7c145e6?pvs=204)
+- [Notion launch sprint](https://app.notion.com/p/3cd26ac2b7f681f599dcc5b48dc2c189?pvs=204)
+- [Notion 12-month roadmap and OKRs](https://app.notion.com/p/3cd26ac2b7f681d1a0b7f287ee54841a?pvs=204)
+- [Linear 90-day project](https://linear.app/arcanea/project/starlight-living-publications-engine-90-day-launch-d505419cda02)
+- [Linear 18-item backlog](https://linear.app/arcanea/document/starlight-publishing-engine-90-day-issue-ready-backlog-c52c00290411)
+
+Linear accepted the project and five milestones. Issue creation is temporarily blocked by the workspace free-plan issue cap; the conversion-ready scopes remain in the linked Linear document.
+
 ## Documents
 
 - [Strategy and portfolio](docs/STRATEGY.md)
